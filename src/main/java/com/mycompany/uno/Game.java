@@ -11,10 +11,7 @@ import javax.swing.*;
 import Player.Player;
 import java.awt.Font;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class Game extends javax.swing.JFrame {
     ArrayList<JButton> cardButtons = new ArrayList<>();
     CardPopup window;
@@ -22,7 +19,7 @@ public class Game extends javax.swing.JFrame {
     DiscardPile discardPile;
     DrawPile drawPile;
     Card topcard;
-    int drawind = 0;
+    int drawind;
     
     /**
      * Creates new form Game
@@ -39,6 +36,7 @@ public class Game extends javax.swing.JFrame {
         this.player = player;
         this.discardPile=discardPile;
         this.drawPile=drawPile;
+        drawind=0;
         topcard = discardPile.returnTopCard();
         color.setText("Top Card Color: "+topcard.getCardColor());
         playerTurn.setText("Current Player: "+player.getPlayerTurn());
@@ -439,26 +437,19 @@ public class Game extends javax.swing.JFrame {
     private void drawCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawCardActionPerformed
         //current player draw card
         Card topcard = discardPile.returnTopCard();
+        String color = topcard.getCardColor();
         if(topcard.getCardDetails().equals("drawfour")){
-            discardPile.removeTopCard();
+            
             if(drawind<4){
                 player.pickCard(drawPile);
                 this.SetButtonImages();
                 drawind++;
-            }
-            else if(drawind==4){
-                this.dispose();
-            }
-        }
-        else if(topcard.getCardDetails().equals("drawtwo")){
-            discardPile.removeTopCard();
-            if(drawind<2){
-                player.pickCard(drawPile);
-                this.SetButtonImages();
-                drawind++;
-            }
-            else if(drawind==2){
-                this.dispose();
+                if(drawind==4){
+                while(discardPile.returnTopCard().getCardType().equals("Special")){
+                    discardPile.removeTopCard();
+                            }
+                discardPile.setNewTopColor(color);
+                this.dispose();}
             }
         }
         else if((player.checkForValidNormalCard(discardPile)!=-1 || player.checkForValidSpecialCard(discardPile)!=-1)&&drawind==0){
@@ -466,8 +457,28 @@ public class Game extends javax.swing.JFrame {
             message.setFont(new Font("Arial",Font.BOLD,36));
             JOptionPane.showMessageDialog(null, message);
         }
+        else if(topcard.getCardDetails().equals("drawtwo")){
+            
+            if(drawind<2){
+                player.pickCard(drawPile);
+                this.SetButtonImages();
+                drawind++;
+                if(drawind==2){
+                while(discardPile.returnTopCard().getCardType().equals("Special")){
+                    discardPile.removeTopCard();
+                            }
+                discardPile.setNewTopColor(color);
+                this.dispose();
+            }
+        }
+        }
         else {
             player.pickCard(drawPile);
+            String cardcolor = topcard.getCardColor();
+            while(discardPile.returnTopCard().getCardType().equals("Special")){
+                    discardPile.removeTopCard();
+                            }
+            discardPile.setNewTopColor(cardcolor);
             this.SetButtonImages();
             this.dispose();
         }

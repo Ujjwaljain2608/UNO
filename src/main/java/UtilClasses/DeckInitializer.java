@@ -4,10 +4,6 @@
  */
 package UtilClasses;
 
-/**
- *
- * @author ujjwaljain
- */
 import Pile.*;
 import Card.*;
 import java.util.ArrayList;

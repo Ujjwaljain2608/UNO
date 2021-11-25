@@ -4,10 +4,7 @@
  */
 package Card;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class SpecialCard extends Card {
 	private String cardColor;
 	private String cardAttribute;

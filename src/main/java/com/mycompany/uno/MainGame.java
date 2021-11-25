@@ -5,16 +5,14 @@ package com.mycompany.uno;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- *
- * @author ujjwaljain
- */
+
 
 import java.util.Scanner;
 import Player.Player;
 import Pile.*;
 import Card.*;
 import UtilClasses.DeckInitializer;
+import java.awt.Font;
 import static java.lang.Thread.*;
 import java.util.ArrayList;
 
@@ -22,6 +20,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class MainGame {
 	
@@ -78,7 +78,6 @@ public class MainGame {
 		currentPlayer = players.get(currentPlayerNumber);
                 game = new Game(currentPlayer,discardPile,drawPile);
                 game.setVisible(true);
-                currentPlayer.showPlayerHand();
                 while(game.isVisible()){
                     try {
                         sleep(1000);
@@ -87,13 +86,13 @@ public class MainGame {
                     }
                 }
                 Card topCard = discardPile.returnTopCard();
-                if(topCard.getCardType().equals("Normal")||topCard.getCardDetails().equals("skip")){
-                    currentPlayerNumber=(currentPlayerNumber+gamedir)%4;
+                if(topCard.getCardType().equals("Normal")||topCard.getCardDetails().equals("skip")||topCard.getCardDetails().equals("drawtwo")){
+                    currentPlayerNumber=(currentPlayerNumber+gamedir+4)%4;
                     continue;
                 }
                 else if (topCard.getCardDetails().equals("reverse")){
                     gamedir*=-1;
-                    currentPlayerNumber=(currentPlayerNumber+gamedir)%4;
+                    currentPlayerNumber=(currentPlayerNumber+gamedir+4)%4;
                     continue;
                 }
                 else if (topCard.getCardColor().equals("wild")){
@@ -107,63 +106,14 @@ public class MainGame {
                         }
                         
                     }
+                    currentPlayerNumber=(currentPlayerNumber+gamedir+4)%4;
                     continue;
                 }
-                if(currentPlayer.numCardsLeft()==0){
-                    System.out.println(currentPlayer.getPlayerName()+" is the Winner !!!");
-                    break;
-                }
+                
+//                    System.out.println(currentPlayer.getPlayerName()+" is the Winner !!!");                }
                     
-//		discardPile.addCardToPile(drawPile.returnTopCard());
             }
-		
-//		while(true) {			
-//			Card topCard = discardPile.returnTopCard();
-//			currentPlayer = players[currentPlayerNumber];
-//			topCard.displayCard();
-//			
-//			if(topCard.getCardType().equals("Normal")) { //Normal card
-//				currentPlayer.start();
-//				currentPlayerNumber = (currentPlayerNumber+1)%4;
-//			} else if(topCard.getCardType().equals("Special")) { //Special card
-//				String topCardAttr = topCard.getCardDetails();
-////				String topCardColor = topCard.getCardColor();
-//				
-//				switch(topCardAttr) {
-//				case("Reverse"):
-//					currentPlayerNumber = (4+(currentPlayerNumber-1))%4;
-//					break;
-//					
-//				case("Skip"):
-//					currentPlayerNumber = ((currentPlayerNumber+1))%4;
-//					break;
-//				
-//				case("DrawTwo"):
-//					currentPlayer.start();
-//					currentPlayerNumber = (currentPlayerNumber+1)%4;
-//					break;
-//				
-//				case("DrawFour"):
-//					currentPlayer.start();
-//					currentPlayerNumber = (currentPlayerNumber+1)%4;
-//					break;
-//				
-//				case("Wild"):
-//					currentPlayer.start();
-//					currentPlayerNumber = (currentPlayerNumber+1)%4;
-//					break;
-//				}
-//			}
-//			
-//			if(currentPlayer.numCardsLeft()==0) {
-//				break;
-//			}
-//			
-//			currentPlayer.stop();
-//		}
-//		
-//		System.out.println("Winner: ");
-//		
 	}
 
+        
 }

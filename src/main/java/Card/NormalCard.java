@@ -4,10 +4,7 @@
  */
 package Card;
 
-/**
- *
- * @author ujjwaljain
- */
+
 
 public class NormalCard extends Card {
 	private String cardColor;

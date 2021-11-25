@@ -15,10 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class CardPopup extends javax.swing.JFrame {
     
     public String color;
@@ -134,7 +131,14 @@ public class CardPopup extends javax.swing.JFrame {
             case "drawtwo":
                 if((topcard.getCardColor().equals(color) && (attr.equals("skip") || attr.equals("reverse"))) || (attr.equals("drawtwo")) || (attr.equals("drawfour"))){
                     player.removeCard(discardPile, index);
-                     game.dispose();
+                    if(player.numCardsLeft()==0){
+                        JLabel message = new JLabel("Winner: "+player.getPlayerName());
+                        message.setFont(new Font("Arial",Font.BOLD,36));
+                        JOptionPane.showMessageDialog(null, message);
+                        System.exit(0);
+                    }
+                    this.dispose();
+                    game.dispose();
                 }
                 else{
                     JLabel message = new JLabel("Unusable Card!!!");
@@ -146,6 +150,13 @@ public class CardPopup extends javax.swing.JFrame {
             case "skip":
                 if((attr.equals("skip"))){
                     player.removeCard(discardPile,index);
+                    if(player.numCardsLeft()==0){
+                        JLabel message = new JLabel("Winner: "+player.getPlayerName());
+                        message.setFont(new Font("Arial",Font.BOLD,36));
+                        JOptionPane.showMessageDialog(null, message);
+                        System.exit(0);
+                    }
+                    this.dispose();
                     game.dispose();
 
 //                    flag = false;
@@ -156,9 +167,22 @@ public class CardPopup extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, message);
                 }
                 break;
+            case "drawfour":
+                JLabel msg = new JLabel("Draw Four Cards!!!");
+                msg.setFont(new Font("Arial",Font.BOLD,36));
+                JOptionPane.showMessageDialog(null, msg);
+                this.dispose();
+                break;
             default:
                 if((topcard.getCardColor().equals(color)||topcard.getCardDetails().equals(attr))||color.equals("wild")){
                     player.removeCard(discardPile, index);
+                    if(player.numCardsLeft()==0){
+                        JLabel message = new JLabel("Winner: "+player.getPlayerName());
+                        message.setFont(new Font("Arial",Font.BOLD,36));
+                        JOptionPane.showMessageDialog(null, message);
+                        System.exit(0);
+                    }
+                    this.dispose();
                     game.dispose();
 
                 }

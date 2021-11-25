@@ -12,10 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class InitializePlayers extends javax.swing.JFrame {
 
     /**

@@ -4,10 +4,6 @@
  */
 package Pile;
 
-/**
- *
- * @author ujjwaljain
- */
 
 import java.util.*;
 

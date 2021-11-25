@@ -6,10 +6,7 @@ package com.mycompany.uno;
 
 import Pile.DiscardPile;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class ChooseColor extends javax.swing.JFrame {
     DiscardPile discardPile;
     /**
