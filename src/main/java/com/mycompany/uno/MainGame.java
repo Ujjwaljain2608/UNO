@@ -24,18 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class MainGame {
-	
-	static Player[] createPlayers(int numPlayers, Scanner sc, DrawPile drawPile, DiscardPile discardPile) {
-		Player[] players = new Player[numPlayers];
-		int playerNum;
-		for(int i=0; i<4; i++) {
-			playerNum = i+1;
-			System.out.println("Player " + playerNum + " Name: ");
-			String playerName = sc.nextLine();
-			players[i] = new Player(playerName, playerNum, discardPile, drawPile);
-		}
-		return players;
-	}
+
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws NoSuchElementException {
