@@ -108,12 +108,7 @@ public class MainGame {
                     }
                     currentPlayerNumber=(currentPlayerNumber+gamedir+4)%4;
                     continue;
-                }
-                
-//                    System.out.println(currentPlayer.getPlayerName()+" is the Winner !!!");                }
-                    
+                } 
             }
 	}
-
-        
 }

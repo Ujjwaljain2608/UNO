@@ -11,7 +11,7 @@ import Card.Card;
 import Pile.DiscardPile;
 import Pile.DrawPile;
 
-public class Player implements Runnable {
+public class Player {
 	private String playerName;
 	public ArrayList<Card> playerHand = new ArrayList<Card>();
 	private int playerNumber;
@@ -28,102 +28,7 @@ public class Player implements Runnable {
                 this.discardPile = discardPile;
 		this.drawPile = drawPile;
 	}
-        @Override
-	public void run() {
-		System.out.println("Player " + this.playerNumber +  " playing... ");
-		this.playerTurn(this.discardPile, this.drawPile);
-	}
 
-	public void playerTurn(DiscardPile discardDeck, DrawPile deck){
-		Card topc = discardDeck.returnTopCard();
-		boolean flag = true;
-		switch(topc.getCardDetails()){
-			case "DrawTwo":
-				for(int i=0;i<this.playerHand.size();i++){
-					Card c = this.playerHand.get(i);
-					String cType = c.getCardType();
-					String cColor = c.getCardColor();
-					String cAttr = c.getCardDetails();
-					if((topc.getCardColor().equals(cColor) && (cAttr.equals("Skip") || cAttr.equals("Reverse"))) || (cAttr.equals("DrawTwo")) || (cAttr.equals("DrawFour"))){
-						removeCard(discardDeck,i);
-						if(cAttr.equals("DrawFour")){
-							System.out.println("Choose the Color: ");
-							String color = sc.next(); ;
-							discardDeck.setNewTopColor(color);
-						}
-						flag = false;
-						break;
-					}
-				}
-				if(flag){
-					for(int i = 0;i<2;i++){
-						pickCard(deck);
-					}
-				}
-				break;
-			case "Skip":
-				for(int i=0;i<this.playerHand.size();i++){
-					Card c = this.playerHand.get(i);
-					String cType = c.getCardType();
-					String cColor = c.getCardColor();
-					String cAttr = c.getCardDetails();
-					if((cAttr.equals("Skip"))){
-						removeCard(discardDeck,i);
-						flag = false;
-						break;
-					}
-				}
-				break;
-			case "DrawFour":
-				for(int i = 0;i<4;i++){
-						pickCard(deck);
-				}
-				System.out.println("Choose the Color: ");
-				String dfcolor = sc.next();
-				discardDeck.setNewTopColor(dfcolor);
-				break;
-			default :
-				for(int i=0;i<this.playerHand.size();i++){
-					Card c = this.playerHand.get(i);
-					String cType = c.getCardType();
-					String cColor = c.getCardColor();
-					String cAttr = c.getCardDetails();
-					//given an option to play a normal turn or a reverse card or
-					int nind = checkForValidNormalCard(discardDeck);
-					int sind = checkForValidSpecialCard(discardDeck);
-					if(nind!=-1 && sind !=-1){
-							System.out.println("Choose the Card Type: ");
-							String cardT = sc.next(); 
-							flag=false;
-							if(cardT.equals("Normal")){
-								removeCard(discardDeck,nind);
-							}
-							else{
-								removeCard(discardDeck,sind);
-							}
-						break;
-					}
-					else if (nind!=-1){
-						removeCard(discardDeck,nind);
-						flag=false;
-						break;
-					}
-					else{
-						removeCard(discardDeck,sind);
-						flag=false;
-						if(discardDeck.returnTopCard().getCardDetails().equals("DrawFour")||discardDeck.returnTopCard().getCardDetails().equals("Wild")){
-							System.out.println("Choose the Color: ");
-							String color = sc.next();
-							discardDeck.setNewTopColor(color);
-						}
-						break;
-					}
-				}
-				if(flag){
-					pickCard(deck);
-				}
-			}
-	}
 	
 	public String getPlayerName() {
 		return this.playerName;
