@@ -134,19 +134,6 @@ public class CardPopup extends javax.swing.JFrame {
             case "drawtwo":
                 if((topcard.getCardColor().equals(color) && (attr.equals("skip") || attr.equals("reverse"))) || (attr.equals("drawtwo")) || (attr.equals("drawfour"))){
                     player.removeCard(discardPile, index);
-//                    if(attr.equals("drawfour")){
-//                        cwindow = new ChooseColor(discardPile);
-//                        cwindow.setVisible(true);
-//                        while(cwindow.isVisible())
-//                        {
-//                            try {
-//                                sleep(1000);
-//                            } catch (InterruptedException ex) {
-//                                Logger.getLogger(CardPopup.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//                        }
-//                   
-//                    }
                      game.dispose();
                 }
                 else{
@@ -170,20 +157,8 @@ public class CardPopup extends javax.swing.JFrame {
                 }
                 break;
             default:
-                if((topcard.getCardColor().equals(color)||topcard.getCardDetails().equals(attr))||topcard.getCardColor().equals("wild")){
+                if((topcard.getCardColor().equals(color)||topcard.getCardDetails().equals(attr))||color.equals("wild")){
                     player.removeCard(discardPile, index);
-//                    if(attr.equals("drawfour")||attr.equals("color")){
-//                        cwindow = new ChooseColor(discardPile);
-//                        cwindow.setVisible(true);
-//                        while(cwindow.isVisible())
-//                        {
-//                            try {
-//                                sleep(1000);
-//                            } catch (InterruptedException ex) {
-//                                Logger.getLogger(CardPopup.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//                        }
-//                    }
                     game.dispose();
 
                 }

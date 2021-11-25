@@ -4,10 +4,7 @@
  */
 package Card;
 
-/**
- *
- * @author ujjwaljain
- */
+
 
 public class Card {
 	public void displayCard(){
@@ -21,6 +18,9 @@ public class Card {
         }
 	public String getCardType(){
             return "";
+        }
+        public void setCardColor(String color){
+            
         }
 }
 

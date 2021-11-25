@@ -35,8 +35,11 @@ public class DiscardPile {
 		this.discardDeck.add(c);
 	}
 	public void setNewTopColor(String newColor) {
-		this.topColor = newColor;
+		this.returnTopCard().setCardColor(newColor);
 	}
+        public String getTopColor(){
+            return this.topColor;
+        }
 	
 	public void displayTopCard() {
 		System.out.println("Color of last card: " + this.topColor);

@@ -8,10 +8,7 @@ import Pile.*;
 import Player.Player;
 import java.util.ArrayList;
 
-/**
- *
- * @author ujjwaljain
- */
+
 public class StartMenu extends javax.swing.JFrame {
 
     /**

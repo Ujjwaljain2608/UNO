@@ -461,7 +461,7 @@ public class Game extends javax.swing.JFrame {
                 this.dispose();
             }
         }
-        else if((player.checkForValidNormalCard(discardPile)!=-1 || player.checkForValidSpecialCard(discardPile)!=-1)){
+        else if((player.checkForValidNormalCard(discardPile)!=-1 || player.checkForValidSpecialCard(discardPile)!=-1)&&drawind==0){
             JLabel message = new JLabel("Valid Card Available!!!");
             message.setFont(new Font("Arial",Font.BOLD,36));
             JOptionPane.showMessageDialog(null, message);

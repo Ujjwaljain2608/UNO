@@ -87,17 +87,13 @@ public class MainGame {
                     }
                 }
                 Card topCard = discardPile.returnTopCard();
-                if(topCard.getCardType().equals("Normal")){
+                if(topCard.getCardType().equals("Normal")||topCard.getCardDetails().equals("skip")){
                     currentPlayerNumber=(currentPlayerNumber+gamedir)%4;
                     continue;
                 }
                 else if (topCard.getCardDetails().equals("reverse")){
                     gamedir*=-1;
                     currentPlayerNumber=(currentPlayerNumber+gamedir)%4;
-                    continue;
-                }
-                else if (topCard.getCardDetails().equals("skip")){
-                    currentPlayerNumber=(currentPlayerNumber+2*gamedir)%4;
                     continue;
                 }
                 else if (topCard.getCardColor().equals("wild")){
@@ -109,8 +105,9 @@ public class MainGame {
                         } catch (InterruptedException ex) {
                             Logger.getLogger(MainGame.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
                     }
-                    
+                    continue;
                 }
                 if(currentPlayer.numCardsLeft()==0){
                     System.out.println(currentPlayer.getPlayerName()+" is the Winner !!!");

@@ -34,4 +34,8 @@ public class SpecialCard extends Card {
 	public String getCardType() {
 		return this.cardType;
 	}
+        
+        public void setCardColor(String color){
+            cardColor = color;
+        }
 }
