@@ -7,10 +7,12 @@ package com.mycompany.uno;
 
 
 
+import java.util.Scanner;
 import Player.Player;
 import Pile.*;
 import Card.*;
 import UtilClasses.DeckInitializer;
+import java.awt.Font;
 import static java.lang.Thread.*;
 import java.util.ArrayList;
 
@@ -18,6 +20,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class MainGame {
 
@@ -33,7 +37,7 @@ public class MainGame {
                 ChooseColor cwindow;
                 int gamedir = 1;
                 discardPile.addCardToPile(drawPile.returnTopCard());
-                while(discardPile.returnTopCard().getCardType().equals("Special")){
+                while(discardPile.returnTopCard().getCardType()=="Special"){
                    discardPile.addCardToPile(drawPile.returnTopCard());
                 }
 		

@@ -8,6 +8,10 @@ import Card.Card;
 import Pile.DiscardPile;
 import Player.Player;
 import java.awt.Font;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -127,11 +131,6 @@ public class CardPopup extends javax.swing.JFrame {
             case "drawtwo":
                 if((topcard.getCardColor().equals(color) && (attr.equals("skip") || attr.equals("reverse"))) || (attr.equals("drawtwo")) || (attr.equals("drawfour"))){
                     player.removeCard(discardPile, index);
-                    if(player.numCardsLeft()==1){
-                        JLabel message = new JLabel("UNO!!!");
-                        message.setFont(new Font("Arial",Font.BOLD,36));
-                        JOptionPane.showMessageDialog(null, message);
-                    }
                     if(player.numCardsLeft()==0){
                         JLabel message = new JLabel("Winner: "+player.getPlayerName());
                         message.setFont(new Font("Arial",Font.BOLD,36));
@@ -151,11 +150,6 @@ public class CardPopup extends javax.swing.JFrame {
             case "skip":
                 if((attr.equals("skip"))){
                     player.removeCard(discardPile,index);
-                    if(player.numCardsLeft()==1){
-                        JLabel message = new JLabel("UNO!!!");
-                        message.setFont(new Font("Arial",Font.BOLD,36));
-                        JOptionPane.showMessageDialog(null, message);
-                    }
                     if(player.numCardsLeft()==0){
                         JLabel message = new JLabel("Winner: "+player.getPlayerName());
                         message.setFont(new Font("Arial",Font.BOLD,36));
@@ -182,11 +176,6 @@ public class CardPopup extends javax.swing.JFrame {
             default:
                 if((topcard.getCardColor().equals(color)||topcard.getCardDetails().equals(attr))||color.equals("wild")){
                     player.removeCard(discardPile, index);
-                    if(player.numCardsLeft()==1){
-                        JLabel message = new JLabel("UNO!!!");
-                        message.setFont(new Font("Arial",Font.BOLD,36));
-                        JOptionPane.showMessageDialog(null, message);
-                    }
                     if(player.numCardsLeft()==0){
                         JLabel message = new JLabel("Winner: "+player.getPlayerName());
                         message.setFont(new Font("Arial",Font.BOLD,36));
